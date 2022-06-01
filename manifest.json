@@ -1,0 +1,28 @@
+{
+    "name": "Bröllopsfotografen",
+    "short_name": "Bröllopsfotografen",
+    "description": "En bröllopsapp där man kan spara bilder i ett local-storage",
+    "start_url": "/index.html",
+    "id": "/index.html",
+    "display": "standalone",
+    "background_color": "#2A2E30",
+    "theme_color": "#2A2E30",
+    "orientation": "portrait-primary",
+    "icons": [
+        {
+            "src": "/images/icons/logo192x192.png",
+            "type": "image/png",
+            "sizes": "192x192"
+        },
+        {
+            "src": "/images/icons/logo512x512.png",
+            "type": "image/png",
+            "sizes": "512x512"
+        },
+        {
+            "src": "/images/icons/logo96x96.png",
+            "type": "image/png",
+            "sizes": "96x96"
+        }
+    ]
+}
