@@ -1,9 +1,35 @@
+API_KEY = '$2b$10$aZLzaAtisHbyYhLJGHQ8Res2s6vqoXMbuM1EPp./6XS5bEgy6mX76';
+
 const videoElem = document.querySelector('#video');
 const canvas = document.querySelector('#picture');
 const takePictureButton = document.querySelector('#takePictureButton');
 const newPictureButton = document.querySelector('#newPictureButton');
 
-const grantNotificationButton = document.querySelector('#grany-button');
+/* --> Sync with JsonBin <--*/
+const syncLocalStorageWithJsonBin = async () => {
+    console.log("Syncing with JsonBin")
+    const images = JSON.parse(localStorage.getItem('cameraApp'));
+
+    const response = await fetch('https://api.jsonbin.io/b/6297b21805f31f68b3b27866', {
+        method: 'PUT',
+        body: JSON.stringify({ images: images }),
+        headers: {
+            'Content-Type': 'application/json',
+            'X-Master-Key': API_KEY
+        }
+    });
+    const data = await response.json();
+    console.log(data);
+}
+
+if (navigator.onLine) {
+    console.log('online');
+} else {
+    console.log('offline');
+}
+
+window.addEventListener('online', syncLocalStorageWithJsonBin);
+window.addEventListener('offline', () => console.log('Went offline'));
 
 /* --> Register Service Worker <--*/
 if('serviceWorker' in navigator){
@@ -15,6 +41,7 @@ if('serviceWorker' in navigator){
 /* --> Notifications <--*/
 
 const showNotification = async () => {
+    console.log(process.env.API_KEY)
     if (!window.Notification) {
         return;
     }
@@ -26,7 +53,7 @@ const showNotification = async () => {
     }
 
     const notification = new Notification('Bild sparad', {
-        body: 'Din bild har nu sparats'
+        body: 'Din bild har nu sparats i Local Storage'
     });
 }
 

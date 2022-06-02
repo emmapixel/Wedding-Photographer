@@ -25,7 +25,6 @@ function getImages() {
 }
 
 function deletePicture(id){
-    console.log("jklloko");
     const images = JSON.parse(localStorage.getItem('cameraApp'));
 
     const newImages = images.filter(image => id!== image.id );
